@@ -1,0 +1,198 @@
+<!doctype HTML>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Bigmatch Scoreboard Admin Panel</title>
+        <script src="https://www.gstatic.com/firebasejs/5.7.3/firebase.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">              
+        <script src="js/services.js"></script>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="page-header">
+                    <h1>Admin Panel
+                    <small>Main Controller</small>
+                    </h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="container-fluid">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="in" id="in1" value="in1">
+                                            <label class="form-check-label" for="in1">
+                                                Inning 1
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="in" id="in2" value="in2">
+                                            <label class="form-check-label" for="in2">
+                                                Inning 2
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="in" id="in3" value="in3">
+                                            <label class="form-check-label" for="in3">
+                                                Inning 3
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="in" id="in4" value="in4">
+                                            <label class="form-check-label" for="in4">
+                                                Inning 4
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="in" id="od1" value="od1">
+                                            <label class="form-check-label" for="od1">
+                                                One Day 1
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="in" id="od2" value="od2">
+                                            <label class="form-check-label" for="od2">
+                                                One Day 2
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="container-fluid">
+                                        <font style="width:80px;display:inline-block;">Wides:</font>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-success" onclick="addWides(+1)">+1</button>
+                                            <button type="button" class="btn btn-warning" onclick="addWides(-1)">-1</button>
+                                        </div>
+                                        <br>
+                                        <br>
+                                        <font style="width:80px;display:inline-block;">Noballs:</font>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-success" onclick="addNoballs(+1)">+1</button>
+                                            <button type="button" class="btn btn-warning" onclick="addNoballs(-1)">-1</button>
+                                        </div>
+                                        <br>
+                                        <br>
+                                        <font style="width:80px;display:inline-block;">Byes:</font>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-success" onclick="addBuys(+1)">+1</button>
+                                            <button type="button" class="btn btn-success" onclick="addBuys(+2)">+2</button>
+                                            <button type="button" class="btn btn-success" onclick="addBuys(+3)">+3</button>
+                                            <button type="button" class="btn btn-success" onclick="addBuys(+4)">+4</button>
+                                            <button type="button" class="btn btn-success" onclick="addBuys(+5)">+5</button>
+                                        </div>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-warning" onclick="addBuys(-1)">-1</button>
+                                            <button type="button" class="btn btn-warning" onclick="addBuys(-2)">-2</button>
+                                            <button type="button" class="btn btn-warning" onclick="addBuys(-3)">-3</button>
+                                            <button type="button" class="btn btn-warning" onclick="addBuys(-4)">-4</button>
+                                            <button type="button" class="btn btn-warning" onclick="addBuys(-5)">-5</button>
+                                        </div>
+                                        <br>
+                                        <br>
+                                        <font style="width:80px;display:inline-block;">Leg Byes:</font>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-success" onclick="addLegBuys(+1)">+1</button>
+                                            <button type="button" class="btn btn-warning" onclick="addLegBuys(-1)">-1</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Status</div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col">Completed:</div>
+                                <div class="col">
+                                    <button id="in1" onclick="setCompleted('in1')">Inning 1</button>
+                                    <button id="in2" onclick="setCompleted('in2')">Inning 2</button>
+                                    <button id="in3" onclick="setCompleted('in3')">Inning 3</button>
+                                    <button id="in4" onclick="setCompleted('in4')">Inning 4</button>
+                                    <button id="od1" onclick="setCompleted('od1')">One Day 1</button>
+                                    <button id="od2" onclick="setCompleted('od2')">One Day 2</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Schools</div>
+                        <div class="panel-body">
+                        </div>
+                        <table class="table table-stripped">
+                            <tr>
+                                <td class="active">Inning 1</td>
+                                <td>
+                                    <button id="battingin1A" onclick="setLead('in1', 'Ananda')">Ananda</button>
+                                </td>
+                                <td>
+                                    <button id="battingin1N" onclick="setLead('in1', 'Nalanda')">Nalanda</button>
+                                </td>                                
+                            </tr>
+                            <tr>
+                                <td class="active">Inning 2</td>
+                                <td>
+                                    <button id="battingin2A" onclick="setLead('in2', 'Ananda')">Ananda</button>
+                                </td>
+                                <td>
+                                    <button id="battingin2N" onclick="setLead('in2', 'Nalanda')">Nalanda</button>
+                                </td>                                 
+                            </tr>
+                            <tr>
+                                <td class="active">Inning 3</td>
+                                <td>
+                                    <button id="battingin3A" onclick="setLead('in3', 'Ananda')">Ananda</button>
+                                </td>
+                                <td>
+                                    <button id="battingin3N" onclick="setLead('in3', 'Nalanda')">Nalanda</button>
+                                </td>                                 
+                            </tr>
+                            <tr>
+                                <td class="active">Inning 4</td>
+                                <td>
+                                    <button id="battingin4A" onclick="setLead('in4', 'Ananda')">Ananda</button>
+                                </td>
+                                <td>
+                                    <button id="battingin4N" onclick="setLead('in4', 'Nalanda')">Nalanda</button>
+                                </td>                                 
+                            </tr>
+                            <tr>
+                                <td class="active">Oneday 1</td>
+                                <td>
+                                    <button id="battingod1A" onclick="setLead('od1', 'Ananda')">Ananda</button>
+                                </td>
+                                <td>
+                                    <button id="battingod1N" onclick="setLead('od1', 'Nalanda')">Nalanda</button>
+                                </td>                                 
+                            </tr>
+                            <tr>
+                                <td class="active">Oneday 2</td>
+                                <td>
+                                    <button id="battingod2A" onclick="setLead('od2', 'Ananda')">Ananda</button>
+                                </td>
+                                <td>
+                                    <button id="battingod2N" onclick="setLead('od2', 'Nalanda')">Nalanda</button>
+                                </td>                                 
+                            </tr>
+                        </table>
+                        <div class="panel-body">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="js/main.js"></script>
+    </body>
+</html>

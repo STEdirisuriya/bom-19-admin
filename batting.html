@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="bomAdmin">
+  <head>
+    <meta charset="utf-8" />
+    <script src="https://www.gstatic.com/firebasejs/5.7.3/firebase.js"></script>
+    <title>Bigmatch Scoreboard Admin Panel</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <script src="js/services.js"></script>
+    <script src="js/batting.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Batting Panel</h1>
+      <div class="alert alert-danger" role="alert">
+        Check the inning selected in main panel
+      </div>
+      <div class="row">
+        <div class="col-12 col-md-8">
+          <div class="form-group">
+            <div id="dis"></div>
+
+            <input
+              list="names"
+              type="text"
+              class="form-control"
+              id="p1name"
+              placeholder="Palyer 1 Name"
+            />
+          </div>
+          <button class="btn btn-danger" onclick="setPlayer(1)">
+            add palyer
+          </button>
+          <div class="form-group">
+            <label>Runs</label>
+            <button
+              type="button"
+              onclick="player1.addRuns(+1)"
+              class="btn btn-success"
+            >
+              +1
+            </button>
+            <button
+              type="button"
+              onclick="player1.addRuns(+2)"
+              class="btn btn-success"
+            >
+              +2
+            </button>
+            <button
+              type="button"
+              onclick="player1.addRuns(+3)"
+              class="btn btn-success"
+            >
+              +3
+            </button>
+            <button
+              type="button"
+              onclick="player1.addRuns(+4)"
+              class="btn btn-success"
+            >
+              +4
+            </button>
+            <button
+              type="button"
+              onclick="player1.addRuns(+6)"
+              class="btn btn-success"
+            >
+              +6
+            </button>
+            <button
+              type="button"
+              onclick="player1.addRuns(-1)"
+              class="btn btn-warning"
+            >
+              -1
+            </button>
+            <button
+              type="button"
+              onclick="player1.addRuns(-2)"
+              class="btn btn-warning"
+            >
+              -2
+            </button>
+            <button
+              type="button"
+              onclick="player1.addRuns(-3)"
+              class="btn btn-warning"
+            >
+              -3
+            </button>
+            <button
+              type="button"
+              onclick="player1.addRuns(-4)"
+              class="btn btn-warning"
+            >
+              -4
+            </button>
+            <button
+              type="button"
+              onclick="player1.addRuns(-6)"
+              class="btn btn-warning"
+            >
+              -6
+            </button>
+          </div>
+          <div class="form-group">
+            <label>Balls</label>
+            <button
+              type="button"
+              onclick="player1.addBalls(+1)"
+              class="btn btn-success"
+            >
+              +1
+            </button>
+            <button
+              type="button"
+              onclick="player1.addBalls(+2)"
+              class="btn btn-success"
+            >
+              +2
+            </button>
+            <button
+              type="button"
+              onclick="player1.addBalls(+3)"
+              class="btn btn-success"
+            >
+              +3
+            </button>
+            <button
+              type="button"
+              onclick="player1.addBalls(+4)"
+              class="btn btn-success"
+            >
+              +4
+            </button>
+            <button
+              type="button"
+              onclick="player1.addBalls(+6)"
+              class="btn btn-success"
+            >
+              +6
+            </button>
+            <button
+              type="button"
+              onclick="player1.addBalls(-1)"
+              class="btn btn-warning"
+            >
+              -1
+            </button>
+            <button
+              type="button"
+              onclick="player1.addBalls(-2)"
+              class="btn btn-warning"
+            >
+              -2
+            </button>
+            <button
+              type="button"
+              onclick="player1.addBalls(-3)"
+              class="btn btn-warning"
+            >
+              -3
+            </button>
+            <button
+              type="button"
+              onclick="player1.addBalls(-4)"
+              class="btn btn-warning"
+            >
+              -4
+            </button>
+            <button
+              type="button"
+              onclick="player1.addBalls(-6)"
+              class="btn btn-warning"
+            >
+              -6
+            </button>
+          </div>
+          <div class="form-group">
+            <button
+              type="button"
+              class="btn btn-danger"
+              onclick="player1.setOut()"
+            >
+              Out
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              onclick="player1.setNotOut()"
+            >
+              NotOut
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="player1.inField()"
+            >
+              In
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="player1.notInField()"
+            >
+              NotIn
+            </button>
+            <button
+              type="button"
+              class="btn btn-info"
+              onclick="player1.clean()"
+            >
+              Remove
+            </button>
+          </div>
+        </div>
+        <div class="col-6 col-md-4">.col-6 .col-md-4</div>
+      </div>
+      <div class="row">
+        <div class="col-12 col-md-8">
+          <div class="form-group">
+            <input
+              list="names"
+              type="text"
+              class="form-control"
+              id="p2name"
+              placeholder="Palyer 1 Name"
+            />
+          </div>
+          <button class="btn btn-danger" onclick="setPlayer(2)">
+            add palyer
+          </button>
+          <div class="form-group">
+            <label>Runs</label>
+            <button
+              type="button"
+              onclick="player2.addRuns(+1)"
+              class="btn btn-success"
+            >
+              +1
+            </button>
+            <button
+              type="button"
+              onclick="player2.addRuns(+2)"
+              class="btn btn-success"
+            >
+              +2
+            </button>
+            <button
+              type="button"
+              onclick="player2.addRuns(+3)"
+              class="btn btn-success"
+            >
+              +3
+            </button>
+            <button
+              type="button"
+              onclick="player2.addRuns(+4)"
+              class="btn btn-success"
+            >
+              +4
+            </button>
+            <button
+              type="button"
+              onclick="player2.addRuns(+6)"
+              class="btn btn-success"
+            >
+              +6
+            </button>
+            <button
+              type="button"
+              onclick="player2.addRuns(-1)"
+              class="btn btn-warning"
+            >
+              -1
+            </button>
+            <button
+              type="button"
+              onclick="player2.addRuns(-2)"
+              class="btn btn-warning"
+            >
+              -2
+            </button>
+            <button
+              type="button"
+              onclick="player2.addRuns(-3)"
+              class="btn btn-warning"
+            >
+              -3
+            </button>
+            <button
+              type="button"
+              onclick="player2.addRuns(-4)"
+              class="btn btn-warning"
+            >
+              -4
+            </button>
+            <button
+              type="button"
+              onclick="player2.addRuns(-6)"
+              class="btn btn-warning"
+            >
+              -6
+            </button>
+          </div>
+          <div class="form-group">
+            <label>Balls</label>
+            <button
+              type="button"
+              onclick="player2.addBalls(+1)"
+              class="btn btn-success"
+            >
+              +1
+            </button>
+            <button
+              type="button"
+              onclick="player2.addBalls(+2)"
+              class="btn btn-success"
+            >
+              +2
+            </button>
+            <button
+              type="button"
+              onclick="player2.addBalls(+3)"
+              class="btn btn-success"
+            >
+              +3
+            </button>
+            <button
+              type="button"
+              onclick="player2.addBalls(+4)"
+              class="btn btn-success"
+            >
+              +4
+            </button>
+            <button
+              type="button"
+              onclick="player2.addBalls(+6)"
+              class="btn btn-success"
+            >
+              +6
+            </button>
+            <button
+              type="button"
+              onclick="player2.addBalls(-1)"
+              class="btn btn-warning"
+            >
+              -1
+            </button>
+            <button
+              type="button"
+              onclick="player2.addBalls(-2)"
+              class="btn btn-warning"
+            >
+              -2
+            </button>
+            <button
+              type="button"
+              onclick="player2.addBalls(-3)"
+              class="btn btn-warning"
+            >
+              -3
+            </button>
+            <button
+              type="button"
+              onclick="player2.addBalls(-4)"
+              class="btn btn-warning"
+            >
+              -4
+            </button>
+            <button
+              type="button"
+              onclick="player2.addBalls(-6)"
+              class="btn btn-warning"
+            >
+              -6
+            </button>
+          </div>
+          <div class="form-group">
+            <button
+              type="button"
+              class="btn btn-danger"
+              onclick="player2.setOut()"
+            >
+              Out
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              onclick="player2.setNotOut()"
+            >
+              NotOut
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="player2.inField()"
+            >
+              In
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="player2.notInField()"
+            >
+              NotIn
+            </button>
+            <button
+              type="button"
+              class="btn btn-info"
+              onclick="player2.clean()"
+            >
+              Remove
+            </button>
+          </div>
+        </div>
+        <div class="col-6 col-md-4">.col-6 .col-md-4</div>
+      </div>
+      <script type="text/javascript"></script>
+    </div>
+  </body>
+</html>
