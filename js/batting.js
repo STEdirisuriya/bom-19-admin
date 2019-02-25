@@ -83,6 +83,7 @@ var player1 = {
       var cIn = snap.val();
       db.ref(cIn + "/batting/" + player_1 + "/field").set(false);
     });
+
   }
 };
 
@@ -96,6 +97,13 @@ var player2 = {
           var n = sn.val();
           n += r;
           db.ref(cIn + "/batting/" + player_2 + "/runs").set(n);
+        });
+        db.ref(cIn + "/runs")
+        .once("value")
+        .then(function(s) {
+          var k = s.val();
+          k += r;
+          db.ref(cIn + "/runs").set(k);
         });
     });
   },
@@ -143,9 +151,17 @@ var player2 = {
 function setPlayer(a) {
   if (a == 1) {
     var name1 = document.getElementById("p1name").value;
+    db.ref("current").on("value", snap => {
+      var cIn = snap.val();
+      db.ref(cIn + "/batting/" + name1 + "/name").set(name1);
+    });
     player_1 = name1;
   } else if (a == 2) {
     var name2 = document.getElementById("p2name").value;
+    db.ref("current").on("value", snap => {
+      var cIn = snap.val();
+      db.ref(cIn + "/batting/" + name2 + "/name").set(name2);
+    });
     player_2 = name2;
   }
 }

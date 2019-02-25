@@ -26,6 +26,10 @@ var play;
 
 function setPlayer() {
   var name = document.getElementById("pname").value;
+  db.ref("current").on("value", snap => {
+      var cIn = snap.val();
+      db.ref(cIn + "/bowling/" + name + "/name").set(name);
+    });
   play = name;
 }
 

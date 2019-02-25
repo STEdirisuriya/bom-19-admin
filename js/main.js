@@ -8,6 +8,13 @@ function addWides(m){
       w += m;
       db.ref('extras/'+ cIn + '/wides').set(w);
     })
+    db.ref(cIn + "/runs")
+        .once("value")
+        .then(function(s) {
+          var k = s.val();
+          k += m;
+          db.ref(cIn + "/runs").set(k);
+        });
   })
 }
 
@@ -19,6 +26,13 @@ function addNoballs(m){
       n += m;
       db.ref('extras/'+ cIn + '/noballs').set(n);
     })
+    db.ref(cIn + "/runs")
+        .once("value")
+        .then(function(s) {
+          var k = s.val();
+          k += m;
+          db.ref(cIn + "/runs").set(k);
+        });
   })
 }
 
@@ -30,6 +44,13 @@ function addBuys(m){
       n += m;
       db.ref('extras/'+ cIn + '/buys').set(n);
     })
+    db.ref(cIn + "/runs")
+        .once("value")
+        .then(function(s) {
+          var k = s.val();
+          k += m;
+          db.ref(cIn + "/runs").set(k);
+        });
   })
 }
 
@@ -41,6 +62,13 @@ function addLegBuys(m){
       n += m;
       db.ref('extras/'+ cIn + '/legbuys').set(n);
     })
+    db.ref(cIn + "/runs")
+        .once("value")
+        .then(function(s) {
+          var k = s.val();
+          k += m;
+          db.ref(cIn + "/runs").set(k);
+        });
   })
 }
 
