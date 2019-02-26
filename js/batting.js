@@ -110,7 +110,7 @@ var player2 = {
   addBalls: function(r) {
     db.ref("current").on("value", snap => {
       var cIn = snap.val();
-      db.ref(cIn + "/batting" + player_2 + "/balls")
+      db.ref(cIn + "/batting/" + player_2 + "/balls")
         .once("value")
         .then(function(sn) {
           var n = sn.val();
