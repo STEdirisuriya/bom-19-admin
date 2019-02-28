@@ -1,10 +1,10 @@
   // Initialize Firebase
   var config = {
-    apiKey: "AIzaSyDF5XfP12H-0_2aZAPujytxma_Mw4Ezm70",
-    authDomain: "bom-admin.firebaseapp.com",
-    databaseURL: "https://bom-admin.firebaseio.com",
-    projectId: "bom-admin",
-    storageBucket: "bom-admin.appspot.com",
-    messagingSenderId: "1070688502030"
+    apiKey: "AIzaSyD6H9F-bA49Jw0EyAuWDkvijG5795WpY10",
+    authDomain: "bom19-e3ac3.firebaseapp.com",
+    databaseURL: "https://bom19-e3ac3.firebaseio.com",
+    projectId: "bom19-e3ac3",
+    storageBucket: "bom19-e3ac3.appspot.com",
+    messagingSenderId: "668983720794"
   };
   firebase.initializeApp(config);

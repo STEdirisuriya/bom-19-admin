@@ -87,13 +87,6 @@ var player = {
           n += r;
           db.ref(cIn + "/bowling/" + play + "/wickets").set(n);
         });
-      db.ref(cIn + "/wickets")
-        .once("value")
-        .then(function(s) {
-          var k = s.val();
-          k += r;
-          db.ref(cIn + "/wickets").set(k);
-        });
     });
   },
   inField: function() {

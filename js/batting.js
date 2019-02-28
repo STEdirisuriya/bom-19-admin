@@ -61,12 +61,26 @@ var player1 = {
     db.ref("current").on("value", snap => {
       var cIn = snap.val();
       db.ref(cIn + "/batting/" + player_1 + "/out").set(true);
+      db.ref(cIn + "/wickets")
+        .once("value")
+        .then(function(s) {
+          var k = s.val();
+          k += 1;
+          db.ref(cIn + "/wickets").set(k);
+        });
     });
   },
   setNotOut: function() {
     db.ref("current").on("value", snap => {
       var cIn = snap.val();
       db.ref(cIn + "/batting/" + player_1 + "/out").set(false);
+      db.ref(cIn + "/wickets")
+        .once("value")
+        .then(function(s) {
+          var k = s.val();
+          k -= 1;
+          db.ref(cIn + "/wickets").set(k);
+        });
     });
   },
   clean: function() {
@@ -123,12 +137,26 @@ var player2 = {
     db.ref("current").on("value", snap => {
       var cIn = snap.val();
       db.ref(cIn + "/batting/" + player_2 + "/out").set(true);
+      db.ref(cIn + "/wickets")
+        .once("value")
+        .then(function(s) {
+          var k = s.val();
+          k += 1;
+          db.ref(cIn + "/wickets").set(k);
+        });
     });
   },
   setNotOut: function() {
     db.ref("current").on("value", snap => {
       var cIn = snap.val();
       db.ref(cIn + "/batting/" + player_2 + "/out").set(false);
+      db.ref(cIn + "/wickets")
+        .once("value")
+        .then(function(s) {
+          var k = s.val();
+          k -=1;
+          db.ref(cIn + "/wickets").set(k);
+        });
     });
   },
   clean: function() {
